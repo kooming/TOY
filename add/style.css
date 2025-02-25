@@ -1,0 +1,27 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+ul li {
+    list-style: none;
+}
+.top {
+    background-color: rgb(31, 173, 102);
+    display: flex;
+    justify-content: space-between;
+}
+.home {
+    color: rgb(204, 204, 79);
+    padding: 20px 0 20px 30px;
+}
+a {
+    text-decoration: none;
+    color: inherit;
+}
+.nickname {
+    padding: 20px 30px 20px 0px;
+    color: rgb(14, 66, 75);
+}
+.text-area{
+    margin: 20px 0 0 20px;
+}
