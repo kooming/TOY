@@ -1,7 +1,9 @@
-const  data = {
+const  user = {
     nickname : "ming"
 }
-console.log(data.nickname);
+
 const nickname = document.querySelector(".nickname")
 
-nickname.innerHTML = `${data.nickname}님 환영합니다.`
+nickname.innerHTML = `${user.nickname}님 환영합니다.`
+
+localStorage.getItem("posts", JSON.stringify)
