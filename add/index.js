@@ -35,7 +35,7 @@ class Comment {
     }
 }
 
-const button = document.querySelector(".add");
+const button = document.querySelector(".add-btn");
 
 button.onclick = () => {
     const title = document.querySelector(".title-value").value;
