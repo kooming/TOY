@@ -19,7 +19,7 @@ class Comment {
 
     }
 
-    getToday(text,text2) {
+    getToday() {
 
         const date = new Date();
         let m = date.getMonth() +1;
@@ -28,8 +28,8 @@ class Comment {
         let M = date.getMinutes();
         let s = date.getSeconds();
         
-        const str = [date.getFullYear(), (m > 9 ? "" : "0") + m, (d > 9 ? "" : "0") + d +" "].join(text);
-        const str2 = [(h > 9 ? "" : "0") +h, (M > 9 ? "" : "0") +M, (s > 9 ? "" : "0")+ s].join(text2);
+        const str = [date.getFullYear(), (m > 9 ? "" : "0") + m, (d > 9 ? "" : "0") + d +" "].join("-");
+        const str2 = [(h > 9 ? "" : "0") +h, (M > 9 ? "" : "0") +M, (s > 9 ? "" : "0")+ s].join(":");
         // console.log(str2)
         return  str+str2;
     }
@@ -38,12 +38,15 @@ class Comment {
 const button = document.querySelector(".add-btn");
 
 button.onclick = () => {
-    const title = document.querySelector(".title-value").value;
-    const text = document.querySelector(".text-value").value;
+    const title = document.querySelector(".title-value").value.trim();
+    const text = document.querySelector(".text-value").value.trim();
    
-    const newPost = new Comment(title,text)
-    data.push(newPost);
-    
-    localStorage.setItem("posts", JSON.stringify(data));
+    if(title === "" || text === "") return
+    else{
+        const newPost = new Comment(title,text)
+        data.push(newPost);
+        
+        localStorage.setItem("posts", JSON.stringify(data));
+    }
 }
 
