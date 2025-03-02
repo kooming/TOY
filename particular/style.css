@@ -24,23 +24,20 @@ a {
     padding: 20px 30px 20px 0px;
     color: rgb(14, 66, 75);
 }
-.text-area{
-    margin: 20px 0 0 20px;
+.container { 
+    max-width: 1000px; 
+    margin: 50px auto; 
+    padding: 20px; 
+    border: 1px solid #ccc;
     user-select: none;
     outline: none;
-    
 }
-button {
-    width: 50px;
-    height: 30px;
-    border-radius: 5px; 
-    border: none;  
-    background-color: rgb(128, 128, 255);
-    color: white;
-}
-.add {
-    padding-left: 1400px;
-}
-button:hover {
-    background-color: rgba(27, 118, 170, 0.712);
+.btn { 
+    width: 40px;
+    height: 40px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+
 }
