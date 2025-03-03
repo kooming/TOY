@@ -1,6 +1,8 @@
 * {
     padding: 0;
     margin: 0;
+    user-select: none;
+    outline: none;
 }
 ul , li {
     list-style: none;
@@ -9,8 +11,6 @@ ul , li {
     background-color: rgb(31, 173, 102);
     display: flex;
     justify-content: space-between;
-    user-select: none;
-    outline: none;
 }
 .home {
     color: rgb(204, 204, 79);
@@ -24,7 +24,7 @@ a {
     padding: 20px 30px 20px 0px;
     color: rgb(14, 66, 75);
 }
-.container { 
+.post-container { 
     max-width: 1000px; 
     margin: 50px auto; 
     padding: 20px; 
@@ -32,7 +32,7 @@ a {
     user-select: none;
     outline: none;
 }
-.btn { 
+.edit-btn, .delete-btn { 
     width: 40px;
     height: 40px;
     display: inline-flex;

@@ -1,47 +1,56 @@
-const  user = {
-    nickname : "ming"
-}
+document.addEventListener("DOMContentLoaded", () => {
+    const user = {
+        nickname: "ming"
+    };
 
+    const nicknameElement = document.querySelector(".nickname");
+    if (nicknameElement) {
+        nicknameElement.innerHTML = `${user.nickname}님 환영합니다.`;
+    }
 
-const nickname = document.querySelector(".nickname")
+    const selectedPost = JSON.parse(localStorage.getItem("selectedPost"));
 
-nickname.innerHTML = `${user.nickname}님 환영합니다.`
+    const postContainer = document.querySelector(".post-container");
 
-// 로컬스토리지에서 선택된 게시글 가져오기
-const selectedPost = JSON.parse(localStorage.getItem("selectedPost"));
+    if (postContainer && selectedPost) {
+        postContainer.innerHTML = `
+            <h2>제목: <span class="post-title">${selectedPost.title}</span></h2>
+            <p><strong>내용:</strong> <span class="post-text">${selectedPost.text}</span></p>
+            <p><strong>작성자:</strong> ${selectedPost.nickname}</p>
+            <p><strong>작성일:</strong> ${selectedPost.date}</p>
+            <div class="button-container">
+                <button class="edit-btn">수정</button>
+                <button class="delete-btn">삭제</button>
+            </div>
+        `;
+    }
 
-// 상세 페이지에서 각 요소에 값 설정
-const postTitle = document.getElementById("post-title");
-const postText = document.getElementById("post-text");
-const postDate = document.getElementById("post-date");
+    const deleteButton = document.querySelector(".delete-btn");
+    if (deleteButton) {
+        deleteButton.addEventListener("click", () => {
+            const isConfirmed = window.confirm("삭제하시겠습니까?");
 
-// 게시글의 제목, 내용, 작성일 표시
-if (selectedPost) {
-    postTitle.innerText = selectedPost.title;
-    postText.innerText = selectedPost.text;
-    postDate.innerText = selectedPost.date;
-}
+            if (isConfirmed) {
+                const posts = JSON.parse(localStorage.getItem("posts")) || [];
+                const postIndex = posts.findIndex(post => post.title === selectedPost.title);
 
-// 삭제 버튼 클릭 시 처리
-const deleteButton = document.querySelector(".btn"); // 삭제 버튼
-deleteButton.addEventListener("click", () => {
-    // 확인 메시지 띄우기
-    const isConfirmed = window.confirm("삭제하시겠습니까?");
+                if (postIndex !== -1) {
+                    posts.splice(postIndex, 1);
+                    localStorage.setItem("posts", JSON.stringify(posts));
+                }
 
-    if (isConfirmed) {
-        // 로컬스토리지에서 선택된 게시글 삭제
-        const posts = JSON.parse(localStorage.getItem("posts")) || [];
-        const postIndex = posts.findIndex(post => post.title === selectedPost.title); // 삭제할 게시글 찾기
+                window.location.href = "../main/index.html"; 
+            } else {
+                window.alert("삭제가 취소되었습니다.");
+            }
+        });
+    }
 
-        if (postIndex !== -1) {
-            posts.splice(postIndex, 1); // 해당 게시글 삭제
-            localStorage.setItem("posts", JSON.stringify(posts)); // 업데이트된 게시글 목록 저장
-        }
-
-        // 상세 페이지에서 메인 페이지로 이동
-        window.location.href = "../main/index.html"; // 메인 페이지로 돌아가기
-    } else {
-        // 사용자가 취소 버튼을 눌렀을 때 아무 작업도 하지 않음
-        console.log("삭제가 취소되었습니다.");
+    // 수정 버튼 처리 -> /update/index.html 로 이동
+    const editButton = document.querySelector(".edit-btn");
+    if (editButton) {
+        editButton.addEventListener("click", () => {
+            window.location.href = "../update/update.html"; 
+        });
     }
 });
