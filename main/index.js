@@ -7,7 +7,7 @@ const nickname = document.querySelector(".nickname")
 
 nickname.innerHTML = `${user.nickname}님 환영합니다.`
 
-const posts = JSON.parse(localStorage.getItem("posts")) || [] ;
+const posts = JSON.parse(localStorage.getItem("posts")) || [];
 
 const bodyContent = document.querySelector(".body-content");
 
@@ -15,7 +15,6 @@ const drawing = () => {
     bodyContent.innerHTML = "";
 
     posts.forEach((post, index) => {
-
         const postItem = document.createElement("ul");
         postItem.classList.add("border-header");
         postItem.innerHTML = `
@@ -24,18 +23,14 @@ const drawing = () => {
             <li>${post.text}</li>
             <li>${post.date}</li>
         `;  
-        
-       
-            postItem.onclick = () => {
-            localStorage.setItem("selectedPost", JSON.stringify(post)); 
+
+        postItem.onclick = () => {
+            localStorage.setItem("selectedPost", JSON.stringify(post)); // ✅ localStorage에 저장
             window.location.href = "../particular/index.html"; 
         };
-        
 
         bodyContent.append(postItem);
-        
     });
 };
 
 drawing();
-

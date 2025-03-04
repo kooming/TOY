@@ -41,3 +41,6 @@ a {
     border-radius: 20px;
 
 }
+.post-text {
+    word-break: keep-all;
+}
